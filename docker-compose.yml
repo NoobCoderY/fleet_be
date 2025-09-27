@@ -1,0 +1,36 @@
+
+
+services:
+  fleetlink-backend:
+    build: .
+    container_name: fleetlink-backend
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongo:27017/fleetlink
+    depends_on:
+      - mongo
+    restart: unless-stopped
+    networks:
+      - fleetlink-network
+
+  mongo:
+    image: mongo:6.0
+    container_name: fleetlink-mongo
+    ports:
+      - '27017:27017'
+    environment:
+      - MONGO_INITDB_DATABASE=fleetlink
+    volumes:
+      - mongo-data:/data/db
+    restart: unless-stopped
+    networks:
+      - fleetlink-network
+
+volumes:
+  mongo-data:
+
+networks:
+  fleetlink-network:
+    driver: bridge
