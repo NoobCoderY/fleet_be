@@ -119,3 +119,15 @@ npm test
 - See `.env` files in both `backend/` and `frontend/` for configuration.
 
 ---
+
+## Example .env (Backend)
+
+```
+PORT=3000
+MONGODB_URI=mongodb://mongo:27017/fleetlink
+NODE_ENV=development
+```
+
+---
+
+---
